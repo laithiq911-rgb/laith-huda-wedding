@@ -328,6 +328,37 @@ document.getElementById("seconds").innerHTML=seconds;
 
 </script>
 
+<div class="container" style="margin-top: 20px; padding: 20px;">
+    <h2 style="color: #8b6b2e;">✅ تأكيد الحضور</h2>
+    <form id="attendance-form">
+        <input type="text" id="guest-name" placeholder="اكتب اسمك هنا" required 
+               style="padding:12px; margin:8px 0; width:85%; text-align:center; border:1px solid #8b6b2e; border-radius:25px; font-size:16px;"><br>
+        
+        <input type="number" id="guests-count" placeholder="عدد الحضور (الأشخاص)" min="1" value="1" required 
+               style="padding:12px; margin:8px 0; width:85%; text-align:center; border:1px solid #8b6b2e; border-radius:25px; font-size:16px;"><br>
+        
+        <button type="submit" id="submit-btn"
+                style="padding:12px 30px; margin-top:15px; background-color:#d4af37; color:white; border:none; border-radius:25px; cursor:pointer; font-weight:bold; width:85%; font-size:18px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+            إرسال التأكيد عبر الواتساب
+        </button>
+    </form>
+</div>
 
+<script>
+document.getElementById('attendance-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var name = document.getElementById('guest-name').value;
+    var count = document.getElementById('guests-count').value;
+
+    // ضع رقمك هنا (مثال للعراق: 96477xxxxxxxx)
+    var phoneNumber = "9647727729965"; 
+
+    var text = "مرحباً، أنا " + name + " أود تأكيد حضوري لحفل الزفاف، عدد المرافقين معي: " + count;
+    var whatsappUrl = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + encodeURIComponent(text);
+
+    window.location.href = whatsappUrl;
+});
+</script>
 </body>
 </html>
